@@ -1,0 +1,52 @@
+namespace grownyc
+
+enum ParticipantType {
+  o FARMER
+  o WAREHOUSE
+  o MARKET
+  o RETAILER
+}
+
+enum QuantityType {
+  o ITEM
+  o POUNDS
+}
+
+/**
+ * A notification that a shipment has been received by the
+ * importer and that funds should be transferred from the importer
+ * to the grower to pay for the shipment.
+ */
+transaction PackageTransfer {
+  --> SupplychainParticipant newOwner
+  o Boolean inspection
+}
+
+/**
+ * A shipment being tracked as an asset on the ledger
+ */
+asset Package identified by packageId {
+  o String packageId
+  o String type
+  o Long quantity
+  o QuantityType quantityType
+}
+
+/**
+ * A concept for a simple street address
+ */
+concept Address {
+  o String city optional
+  o String country
+  o String street optional
+  o String zip optional
+}
+/**
+ * An abstract participant type in this business network
+ */
+participant SupplychainParticipant identified by ID {
+  o String ID
+  o String name
+  o Address address
+  o ParticipantType participantType
+}
