@@ -12,15 +12,6 @@ enum QuantityType {
   o POUNDS
 }
 
-/**
- * A notification that a shipment has been received by the
- * importer and that funds should be transferred from the importer
- * to the grower to pay for the shipment.
- */
-transaction PackageTransfer {
-  --> SupplychainParticipant newOwner
-  o Boolean inspection
-}
 
 /**
  * A shipment being tracked as an asset on the ledger
@@ -50,3 +41,15 @@ participant SupplychainParticipant identified by ID {
   o Address address
   o ParticipantType participantType
 }
+
+/**
+ * A notification that a shipment has been received by the
+ * importer and that funds should be transferred from the importer
+ * to the grower to pay for the shipment.
+ */
+transaction PackageTransfer {
+  --> Package package
+  --> SupplychainParticipant newOwner
+  o Boolean inspection
+}
+

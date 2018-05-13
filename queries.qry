@@ -1,3 +1,16 @@
 /**
  * New query file
  */
+query selectPackageHistory {
+    description: "Select package history"
+    statement:
+        SELECT grownyc.PackageTransfer
+            WHERE (package  == _$package)
+                ORDER BY [timestamp DESC]
+}
+
+query selectPackageTransfers {
+  description: "Select all commodities"
+  statement:
+      SELECT grownyc.PackageTransfer
+}
